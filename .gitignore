@@ -1,3 +1,7 @@
 node_modules
 dist
 .DS_Store
+
+# 素材原檔：不進 repo（可能含未公開內容）
+photos/
+notes/
