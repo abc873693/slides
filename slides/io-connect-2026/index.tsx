@@ -7,7 +7,6 @@ import theme from './assets/theme.jpg';
 import workshop from './assets/workshop.jpg';
 import flutterSalon from './assets/flutter.jpg';
 import webmcp from './assets/webmcp.jpg';
-import antigravityArch from './assets/antigravity-arch.jpg';
 import agentPlatform from './assets/agent-platform.jpg';
 import googleSign from './assets/google-sign.jpg';
 import artPoem from './assets/art-poem.jpg';
@@ -180,6 +179,76 @@ const Layer = ({ n, name, desc, color }: { n: string; name: string; desc: string
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 22, color: muted, flex: '0 0 34px' }}>{n}</div>
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 25, color, flex: '0 0 250px' }}>{name}</div>
     <div style={{ fontSize: 22, color: muted, flex: 1 }}>{desc}</div>
+  </div>
+);
+
+/** Antigravity 的三個操作介面 */
+const Surface = ({ icon, name, sub, desc, color }: { icon: string; name: string; sub: string; desc: string; color: string }) => (
+  <div
+    style={{
+      flex: 1,
+      background: card,
+      border: `1px solid ${line}`,
+      borderTop: `5px solid ${color}`,
+      borderRadius: 'var(--osd-radius)',
+      padding: '30px 28px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12,
+    }}
+  >
+    <div
+      style={{
+        width: 52, height: 52, borderRadius: '50%', background: color,
+        color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--osd-font-display)', fontSize: 24,
+      }}
+    >
+      {icon}
+    </div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, marginTop: 6 }}>{name}</div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 21, color: muted }}>{sub}</div>
+    <div style={{ fontSize: 25, color: muted, lineHeight: 1.5, marginTop: 4 }}>{desc}</div>
+  </div>
+);
+
+/** 流程步驟卡:編號 + 指令 + 它做的事 */
+const Step5 = ({ n, cmd, what, color }: { n: string; cmd: string; what: string; color: string }) => (
+  <div
+    style={{
+      flex: 1,
+      background: card,
+      border: `1px solid ${line}`,
+      borderTop: `4px solid ${color}`,
+      borderRadius: 'var(--osd-radius)',
+      padding: '22px 20px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+    }}
+  >
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 20, color: muted }}>{n}</div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, color }}>{cmd}</div>
+    <div style={{ fontSize: 22, color: muted, lineHeight: 1.5 }}>{what}</div>
+  </div>
+);
+
+/** 情境 / 結果的橫條 */
+const Band = ({ label, text, color }: { label: string; text: string; color: string }) => (
+  <div
+    style={{
+      background: card,
+      border: `1px solid ${line}`,
+      borderLeft: `5px solid ${color}`,
+      borderRadius: 'var(--osd-radius)',
+      padding: '18px 24px',
+      display: 'flex',
+      alignItems: 'baseline',
+      gap: 18,
+    }}
+  >
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 21, color, flex: '0 0 auto' }}>{label}</span>
+    <span style={{ fontSize: 25, color: muted, lineHeight: 1.5 }}>{text}</span>
   </div>
 );
 
@@ -485,19 +554,69 @@ const Bridge: Page = () => (
 );
 
 const Tooling: Page = () => (
-  <div style={{ ...page, flexDirection: 'row', gap: 48, alignItems: 'center' }}>
-    <div style={{ flex: '0 0 52%', borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
-      <img src={antigravityArch} alt="" style={{ width: '100%', display: 'block' }} />
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>開發工具</div>
+    <h2 style={{ ...h2, fontSize: 56, marginTop: 22 }}>你寫程式的工具也在 agent 化</h2>
+    <div style={{ display: 'flex', gap: 24, marginTop: 40 }}>
+      <Surface icon="▤" name="桌面 App" sub="Agent Manager" desc="視覺化編排多個 agent，跨 macOS / Windows / Linux" color="#1a73e8" />
+      <Surface icon=">_" name="CLI" sub="agy" desc="輕量的終端機介面，適合 SSH 與雲端環境" color={green} />
+      <Surface icon="◎" name="IDE" sub="Antigravity IDE" desc="視覺化檢查與多工作區操作，接近 VS Code 的用法" color={yellow} />
     </div>
-    <div style={{ flex: 1 }}>
-      <div style={eyebrow}>開發工具</div>
-      <h2 style={{ ...h2, fontSize: 50, marginTop: 22 }}>你寫程式的工具<br />也在 agent 化</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginTop: 32 }}>
-        <Bullet text="三個介面共用同一套引擎" sub="桌面 App、CLI、IDE，切換不掉狀態" />
-        <Bullet text="/browser · /goal" sub="沙箱瀏覽器自己驗證結果；給目標讓它拆解、跑測試、自己修" />
-        <Bullet text=".agents/skills/" sub="把團隊 SOP 寫成 Markdown 進版控，變成專屬指令" />
-      </div>
+    <div
+      style={{
+        marginTop: 30,
+        padding: '20px 26px',
+        background: card,
+        border: `1px solid ${line}`,
+        borderRadius: 'var(--osd-radius)',
+        display: 'flex',
+        alignItems: 'baseline',
+        gap: 20,
+      }}
+    >
+      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 22, color: '#1a73e8' }}>共用同一套引擎</span>
+      <span style={{ fontSize: 25, color: muted }}>
+        三個介面切換不掉狀態，slash 指令、subagent、skill 全部通用：
+        <span style={{ color: 'var(--osd-text)', fontFamily: 'var(--osd-font-display)', fontSize: 23 }}>
+          {' '}/browser　/goal　.agents/skills/
+        </span>
+      </span>
     </div>
+  </div>
+);
+
+const Codelab: Page = () => (
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>實戰案例</div>
+    <h2 style={{ ...h2, fontSize: 54, marginTop: 20 }}>五個指令串成一條工作流</h2>
+
+    <div style={{ marginTop: 32 }}>
+      <Band
+        label="情境"
+        text="一支 1,000 行的 legacy index.html，沒有文件、沒有測試，要在上線前交出 AI 解算器與平衡數據"
+        color={muted}
+      />
+    </div>
+
+    <div style={{ display: 'flex', gap: 16, marginTop: 22 }}>
+      <Step5 n="01" cmd="/grill-me" what="反過來訪談你，把架構與 DOM 掛勾問清楚" color="#5f6368" />
+      <Step5 n="02" cmd="/goal" what="給目標，讓它自己寫進解算器" color="#1a73e8" />
+      <Step5 n="03" cmd="/browser" what="開沙箱瀏覽器截圖，驗證畫面與狀態" color={green} />
+      <Step5 n="04" cmd="/schedule" what="跑 100 次收遙測，產出平衡報告" color={yellow} />
+      <Step5 n="05" cmd="Custom Skill" what="把這套 SOP 收成自己的 /run-stress-test" color="#a48ff0" />
+    </div>
+
+    <div style={{ marginTop: 22 }}>
+      <Band
+        label="結果"
+        text="調整方塊生成機率 10% → 15%，通關率從 20% 拉到 35%，而且是用自己編的指令驗證出來的"
+        color={green}
+      />
+    </div>
+
+    <p style={{ fontSize: 21, color: muted, marginTop: 24, marginBottom: 0 }}>
+      重點不是遊戲，是最後一步：<span style={{ color: 'var(--osd-text)' }}>流程本身變成可以重複執行的指令</span>。
+    </p>
   </div>
 );
 
@@ -564,6 +683,7 @@ export default [
   Shenzhen,
   Bridge,
   Tooling,
+  Codelab,
   Takeaway,
   End,
 ] satisfies Page[];
