@@ -12,6 +12,8 @@ import googleSign from './assets/google-sign.jpg';
 import gdgSummit from './assets/gdg-summit.jpg';
 import gdgPoster from './assets/gdg-poster.jpg';
 import gdgCloud from './assets/gdg-cloud.jpg';
+import nameGugo from './assets/name-gugo.jpg';
+import nameGugu from './assets/name-gugu.jpg';
 import gdeSummit from './assets/gde-summit.jpg';
 import venue from './assets/venue.jpg';
 import keynoteGame from './assets/keynote-game.jpg';
@@ -684,13 +686,13 @@ const Tooling: Page = () => (
 
 const Codelab: Page = () => (
   <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>實戰案例</div>
+    <div style={eyebrow}>實戰案例 · Pixel 2048 Codelab</div>
     <h2 style={{ ...h2, fontSize: 54, marginTop: 20 }}>五個指令串成一條工作流</h2>
 
     <div style={{ marginTop: 32 }}>
       <Band
         label="情境"
-        text="一支 1,000 行的 legacy index.html，沒有文件、沒有測試，要在上線前交出 AI 解算器與平衡數據"
+        text="一支 1,000 行的 legacy index.html（就是 2048 那個小遊戲），沒有文件、沒有測試，要在上線前交出 AI 解算器與平衡數據"
         color={muted}
       />
     </div>
@@ -711,9 +713,14 @@ const Codelab: Page = () => (
       />
     </div>
 
-    <p style={{ fontSize: 21, color: muted, marginTop: 24, marginBottom: 0 }}>
-      重點不是遊戲，是最後一步：<span style={{ color: 'var(--osd-text)' }}>流程本身變成可以重複執行的指令</span>。
-    </p>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginTop: 22, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 21, color: muted }}>
+        重點不是遊戲，是最後一步：<span style={{ color: 'var(--osd-text)' }}>流程本身變成可以重複執行的指令</span>。
+      </span>
+      <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 19, color: muted, border: `1px solid ${line}`, borderRadius: 999, padding: '7px 16px' }}>
+        Pixel 2048 Codelab · 90 分鐘 · codelabs.developers.google.com/codelabs/devsite/codelabs/mastering-slash-commands-antigravity
+      </span>
+    </div>
   </div>
 );
 
@@ -789,19 +796,41 @@ const GdgAfternoon: Page = () => (
 const GdgFun: Page = () => (
   <div style={{ ...page, justifyContent: 'center' }}>
     <div style={eyebrow}>8/11 · 順帶一提</div>
-    <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>中國的 Google<br />不叫 Google</h2>
-    <p style={{ fontSize: 34, color: muted, marginTop: 40, marginBottom: 0, lineHeight: 1.6 }}>
-      辦公室門口的公司登記名稱跟你想的不一樣——<br />
-      這種小地方最能感覺到「這裡的規則不同」。
-    </p>
-    <p style={{ fontSize: 26, color: muted, marginTop: 40, marginBottom: 0 }}>
-      （照片待補：PXL_20260811_042808026、PXL_20260811_020924218）
+    <h2 style={{ ...h2, fontSize: 54, marginTop: 20 }}>同一棟樓，兩個 Google</h2>
+    <div style={{ display: 'flex', gap: 26, marginTop: 34 }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+          <img src={nameGugo} alt="" style={{ width: '100%', display: 'block' }} />
+        </div>
+        <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26 }}>咕果信息技術（上海）</div>
+        <div style={{ fontSize: 22, color: muted }}>Google Information Technology</div>
+      </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+          <img src={nameGugu} alt="" style={{ width: '100%', display: 'block' }} />
+        </div>
+        <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26 }}>谷歌廣告（上海）</div>
+        <div style={{ fontSize: 22, color: muted }}>Google Advertising</div>
+      </div>
+    </div>
+    <p style={{ fontSize: 26, color: muted, marginTop: 30, marginBottom: 0, lineHeight: 1.6 }}>
+      兩個不同的法人，連中文名都不一樣——<span style={{ color: 'var(--osd-text)' }}>「咕果」跟「谷歌」</span>。
+      這種小地方最能感覺到這裡的規則不同。
     </p>
   </div>
 );
 
 const BreakIo: Page = () => (
-  <DayBreak date="8 / 12 – 13" title="I/O Connect China" sub="上海世博中心，兩天，61 場" />
+  <div style={{ ...fill, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 140px', color: '#fff' }}>
+    <PhotoBg src={hall} dim={0.62} />
+    <div style={{ position: 'relative' }}>
+      <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, color: '#8ab4f8', letterSpacing: '0.14em' }}>
+        8 / 12 – 13
+      </div>
+      <h2 style={{ ...h2, fontSize: 84, marginTop: 26 }}>I/O Connect China</h2>
+      <p style={{ fontSize: 34, color: '#dadce0', marginTop: 30, marginBottom: 0 }}>上海世博中心，兩天，61 場</p>
+    </div>
+  </div>
 );
 
 const Venue: Page = () => (
@@ -821,41 +850,45 @@ const Venue: Page = () => (
 const VenueMap: Page = () => (
   <div style={{ ...page }}>
     <div style={eyebrow}>8/12 · 會場</div>
-    <h2 style={{ ...h2, fontSize: 52, marginTop: 20 }}>三種空間，走一圈要十分鐘</h2>
-    <svg viewBox="0 0 1600 440" style={{ width: '100%', height: 'auto', marginTop: 30 }} role="img"
-         aria-label="會場配置：一樓藍色是議程廳，綠色是展區，黃色是工作坊，開發者沙龍在展區末端">
-      <rect x="30" y="30" width="1540" height="380" rx="16" fill="none" stroke={line} strokeWidth="2" strokeDasharray="6 5" />
+    <h2 style={{ ...h2, fontSize: 52, marginTop: 18 }}>三種空間，走一圈要十分鐘</h2>
+    <svg viewBox="0 0 1600 470" style={{ width: '100%', height: 'auto', marginTop: 22 }} role="img"
+         aria-label="會場立體示意：一樓藍色是議程廳，中間綠色是展區、末端接開發者沙龍，右側黃色是工作坊">
 
-      <rect x="70" y="70" width="420" height="300" rx="12" fill="rgba(26,115,232,0.09)" stroke="#1a73e8" strokeWidth="2.5" />
-      <text x="98" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill="#1a73e8">議程廳</text>
-      <text x="98" y="156" fontSize="22" fill={muted}>一樓，兩軌並行</text>
-      <text x="98" y="190" fontSize="22" fill={muted}>AI · Chrome（8/12）</text>
-      <text x="98" y="222" fontSize="22" fill={muted}>Android · Cloud（8/13）</text>
-      <text x="98" y="268" fontSize="22" fill={muted}>Keynote 也在這一側</text>
-      <text x="98" y="330" fontSize="20" fill="#1a73e8">30 場</text>
+      {/* 議程廳 */}
+      <polygon points="330,120 540,214 330,308 120,214" fill="#1a73e8" opacity="0.16" stroke="#1a73e8" strokeWidth="2.5" />
+      <polygon points="120,214 330,308 330,352 120,258" fill="#1a73e8" opacity="0.34" stroke="#1a73e8" strokeWidth="1.5" />
+      <polygon points="540,214 330,308 330,352 540,258" fill="#1a73e8" opacity="0.22" stroke="#1a73e8" strokeWidth="1.5" />
+      <text x="330" y="196" fontSize="30" fontFamily="ui-monospace, monospace" fill="#1a73e8" textAnchor="middle">議程廳</text>
+      <text x="330" y="228" fontSize="21" fill={muted} textAnchor="middle">一樓 · 兩軌並行</text>
+      <text x="330" y="256" fontSize="21" fill={muted} textAnchor="middle">30 場</text>
 
-      <rect x="530" y="70" width="620" height="300" rx="12" fill="rgba(24,128,56,0.09)" stroke={green} strokeWidth="2.5" />
-      <text x="558" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill={green}>展區</text>
-      <text x="558" y="156" fontSize="22" fill={muted}>Gemini 奇趣影棚 · AI 社會公益 ×3</text>
-      <text x="558" y="188" fontSize="22" fill={muted}>Android XR · WebMCP · 邊緣推論</text>
-      <text x="558" y="220" fontSize="22" fill={muted}>出海創業加速器</text>
+      {/* 展區 */}
+      <polygon points="790,150 1030,258 790,366 550,258" fill={green} opacity="0.16" stroke={green} strokeWidth="2.5" />
+      <polygon points="550,258 790,366 790,410 550,302" fill={green} opacity="0.34" stroke={green} strokeWidth="1.5" />
+      <polygon points="1030,258 790,366 790,410 1030,302" fill={green} opacity="0.22" stroke={green} strokeWidth="1.5" />
+      <text x="790" y="234" fontSize="30" fontFamily="ui-monospace, monospace" fill={green} textAnchor="middle">展區</text>
+      <text x="790" y="266" fontSize="21" fill={muted} textAnchor="middle">影棚 · 社會公益 · XR</text>
+      <text x="790" y="294" fontSize="21" fill={muted} textAnchor="middle">WebMCP · 出海加速器</text>
 
-      <rect x="880" y="250" width="248" height="102" rx="10" fill="rgba(24,128,56,0.16)" stroke={green} strokeWidth="2" strokeDasharray="5 4" />
-      <text x="902" y="288" fontSize="24" fill={green}>開發者沙龍</text>
-      <text x="902" y="318" fontSize="19" fill={muted}>在展區末端</text>
-      <text x="902" y="342" fontSize="19" fill={muted}>12 場</text>
+      {/* 開發者沙龍:接在展區末端 */}
+      <polygon points="1130,300 1250,354 1130,408 1010,354" fill={green} opacity="0.3" stroke={green} strokeWidth="2" strokeDasharray="5 4" />
+      <text x="1130" y="352" fontSize="22" fontFamily="ui-monospace, monospace" fill={green} textAnchor="middle">沙龍</text>
+      <text x="1130" y="378" fontSize="18" fill={muted} textAnchor="middle">12 場</text>
 
-      <rect x="1190" y="70" width="340" height="300" rx="12" fill="rgba(232,116,0,0.09)" stroke={yellow} strokeWidth="2.5" />
-      <text x="1218" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill={yellow}>工作坊</text>
-      <text x="1218" y="156" fontSize="22" fill={muted}>要帶筆電</text>
-      <text x="1218" y="188" fontSize="22" fill={muted}>ADK 多 agent</text>
-      <text x="1218" y="220" fontSize="22" fill={muted}>兩日挑戰賽也在這</text>
-      <text x="1218" y="330" fontSize="20" fill={yellow}>19 場</text>
+      {/* 工作坊 */}
+      <polygon points="1300,110 1500,200 1300,290 1100,200" fill={yellow} opacity="0.16" stroke={yellow} strokeWidth="2.5" />
+      <polygon points="1100,200 1300,290 1300,334 1100,244" fill={yellow} opacity="0.34" stroke={yellow} strokeWidth="1.5" />
+      <polygon points="1500,200 1300,290 1300,334 1500,244" fill={yellow} opacity="0.22" stroke={yellow} strokeWidth="1.5" />
+      <text x="1300" y="184" fontSize="30" fontFamily="ui-monospace, monospace" fill={yellow} textAnchor="middle">工作坊</text>
+      <text x="1300" y="216" fontSize="21" fill={muted} textAnchor="middle">要帶筆電 · 19 場</text>
 
-      <polygon points="30,220 8,202 8,238" fill={muted} />
-      <text x="12" y="268" fontSize="20" fill={muted}>入口</text>
+      {/* 動線 */}
+      <path d="M 60 250 L 110 224" stroke={muted} strokeWidth="2" />
+      <text x="30" y="288" fontSize="20" fill={muted}>入口</text>
+      <path d="M 548 244 L 560 250" stroke={muted} strokeWidth="2" strokeDasharray="4 4" />
+      <path d="M 1032 268 L 1096 226" stroke={muted} strokeWidth="2" strokeDasharray="4 4" />
     </svg>
-    <p style={{ fontSize: 22, color: muted, marginTop: 22, marginBottom: 0 }}>
+    <p style={{ fontSize: 22, color: muted, marginTop: 12, marginBottom: 0 }}>
       示意圖。實際感受是：聽完議程要走過整個展區才到工作坊，中間很容易被展區攔下來。
     </p>
   </div>
@@ -920,7 +953,7 @@ const Takeaway: Page = () => (
         官方議程與講者　<span style={{ color: muted, fontSize: 28 }}>ioconnectchina.googlecnapps.cn</span>
       </div>
       <div style={{ fontSize: 34, lineHeight: 1.4 }}>
-        議程影片　<span style={{ color: muted, fontSize: 28 }}>會後陸續上線</span>
+        開發者沙龍議程　<span style={{ color: muted, fontSize: 28 }}>ioconnectchina.googlecnapps.cn/intl/en_cn/meetups/</span>
       </div>
       <div style={{ fontSize: 34, lineHeight: 1.4 }}>
         ADK 文件　<span style={{ color: muted, fontSize: 28 }}>adk.dev</span>
