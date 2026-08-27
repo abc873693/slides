@@ -7,7 +7,9 @@ import theme from './assets/theme.jpg';
 import workshop from './assets/workshop.jpg';
 import flutterSalon from './assets/flutter.jpg';
 import webmcp from './assets/webmcp.jpg';
-import boothArt from './assets/booth-art.jpg';
+import artPoem from './assets/art-poem.jpg';
+import artPaper from './assets/art-paper.jpg';
+import artDance from './assets/art-dance.jpg';
 import boothCoral from './assets/booth-coral.jpg';
 import boothXr from './assets/booth-xr.jpg';
 import boothStudio from './assets/booth-studio.jpg';
@@ -143,6 +145,17 @@ const TrackBar = ({ name, n, total, color }: { name: string; n: number; total: n
     <div style={{ flex: '0 0 130px', fontFamily: 'var(--osd-font-display)', fontSize: 26 }}>{name}</div>
     <div style={{ width: `${(n / total) * 620}px`, height: 34, background: color, borderRadius: 6 }} />
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, color: muted }}>{n}</div>
+  </div>
+);
+
+/** 作品卡:圖 + 作品名 + 一句機制說明 */
+const ArtCard = ({ src, title, note }: { src: string; title: string; note: string }) => (
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+    <div style={{ width: '100%', height: 306, borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    </div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, lineHeight: 1.3 }}>{title}</div>
+    <div style={{ fontSize: 24, color: muted, lineHeight: 1.5 }}>{note}</div>
   </div>
 );
 
@@ -297,20 +310,29 @@ const Shift2: Page = () => (
 );
 
 const BoothArt: Page = () => (
-  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
-    <div style={{ flex: 1 }}>
-      <div style={eyebrow}>展區 · 01</div>
-      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>AI 社會公益<br />× Gemma 4</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 40 }}>
-        <Bullet text="四時行吟" sub="誦讀古詩，AI 識別語音裡的情緒律動，即時匹配 24 節氣" />
-        <Bullet text="紙上生靈" sub="多模態識別手繪筆觸，帶觀眾走進剪紙光影世界" />
-        <Bullet text="樂舞胡旋" sub="識別觀眾衣著並映射化身，與唐俑共舞" />
-      </div>
-      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
-        三組都是中央美院青年藝術家的畢業創作，加上 Gemma 4 開放模型改成互動裝置。
-      </p>
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>展區 · 01</div>
+    <h2 style={{ ...h2, fontSize: 58, marginTop: 22 }}>AI 社會公益 × Gemma 4</h2>
+    <div style={{ display: 'flex', gap: 24, marginTop: 40 }}>
+      <ArtCard
+        src={artPoem}
+        title="四時行吟"
+        note="誦讀古詩，AI 識別語音裡的情緒律動，即時匹配 24 節氣"
+      />
+      <ArtCard
+        src={artPaper}
+        title="紙上生靈"
+        note="多模態識別手繪筆觸，帶觀眾走進剪紙光影世界"
+      />
+      <ArtCard
+        src={artDance}
+        title="樂舞胡旋"
+        note="即時識別觀眾衣著並映射專屬化身，與唐俑共舞胡旋"
+      />
     </div>
-    <PhotoSide src={boothArt} />
+    <p style={{ fontSize: 24, color: muted, marginTop: 36, marginBottom: 0 }}>
+      三組都是中央美院青年藝術家的畢業創作，加上 Gemma 4 開放模型改成互動裝置。
+    </p>
   </div>
 );
 
@@ -351,7 +373,7 @@ const BoothStudio: Page = () => (
       <div style={eyebrow}>展區 · 04</div>
       <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Gemini 奇趣影棚</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
-        <Bullet text="站上定點拍照，Gemini 生成主題照" sub="實驗室、書房、派對，換的是整個場景不只是濾鏡" />
+        <Bullet text="站上定點拍照，Gemini 生成主題照" sub="書房、實驗室這類場景，換掉的是整個背景與造型，不只是濾鏡" />
         <Bullet text="掃 QR 取圖，24 小時後自動刪除" sub="畫面上就寫著這句——這個細節比生成品質更值得注意" />
       </div>
     </div>
