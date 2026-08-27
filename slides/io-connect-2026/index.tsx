@@ -164,13 +164,13 @@ const ArtCard = ({ src, title, note }: { src: string; title: string; note: strin
 );
 
 /** 分層條:名稱 + 說明,可標記「我們用的那層」 */
-const Layer = ({ n, name, desc, color, mine = false }: { n: string; name: string; desc: string; color: string; mine?: boolean }) => (
+const Layer = ({ n, name, desc, color }: { n: string; name: string; desc: string; color: string }) => (
   <div
     style={{
       display: 'flex',
       alignItems: 'center',
       gap: 24,
-      background: mine ? 'rgba(26,115,232,0.06)' : card,
+      background: card,
       border: `1px solid ${line}`,
       borderLeft: `5px solid ${color}`,
       borderRadius: 'var(--osd-radius)',
@@ -180,9 +180,6 @@ const Layer = ({ n, name, desc, color, mine = false }: { n: string; name: string
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 22, color: muted, flex: '0 0 34px' }}>{n}</div>
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 25, color, flex: '0 0 250px' }}>{name}</div>
     <div style={{ fontSize: 22, color: muted, flex: 1 }}>{desc}</div>
-    {mine ? (
-      <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 19, color: '#1a73e8' }}>← 我們用的</div>
-    ) : null}
   </div>
 );
 
@@ -443,7 +440,7 @@ const Stack: Page = () => (
         <Layer n="01" name="Agent Studio" desc="低程式碼視覺工作區" color={yellow} />
         <Layer n="02" name="Managed Agents API" desc="託管服務" color={green} />
         <Layer n="03" name="Antigravity · CLI" desc="開發者工具" color="#a48ff0" />
-        <Layer n="04" name="ADK 2.0" desc="完全用程式控制" color="#1a73e8" mine />
+        <Layer n="04" name="ADK 2.0" desc="完全用程式控制" color="#1a73e8" />
       </div>
       <p style={{ fontSize: 24, color: muted, marginTop: 28, marginBottom: 0 }}>
         A2A 協定貫穿四層，不同層做出來的 agent 可以互相呼叫。
