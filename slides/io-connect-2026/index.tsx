@@ -9,6 +9,11 @@ import flutterSalon from './assets/flutter.jpg';
 import webmcp from './assets/webmcp.jpg';
 import agentPlatform from './assets/agent-platform.jpg';
 import googleSign from './assets/google-sign.jpg';
+import gdgSummit from './assets/gdg-summit.jpg';
+import gdgPoster from './assets/gdg-poster.jpg';
+import gdeSummit from './assets/gde-summit.jpg';
+import venue from './assets/venue.jpg';
+import keynoteGame from './assets/keynote-game.jpg';
 import artPoem from './assets/art-poem.jpg';
 import artPaper from './assets/art-paper.jpg';
 import artDance from './assets/art-dance.jpg';
@@ -249,6 +254,29 @@ const Band = ({ label, text, color }: { label: string; text: string; color: stri
   >
     <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 21, color, flex: '0 0 auto' }}>{label}</span>
     <span style={{ fontSize: 25, color: muted, lineHeight: 1.5 }}>{text}</span>
+  </div>
+);
+
+/** 段落分隔頁:日期 + 段落名 */
+const DayBreak = ({ date, title, sub }: { date: string; title: string; sub: string }) => (
+  <div style={{ ...fill, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 140px' }}>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 26, color: 'var(--osd-accent)', letterSpacing: '0.14em' }}>
+      {date}
+    </div>
+    <h2 style={{ ...h2, fontSize: 84, marginTop: 26 }}>{title}</h2>
+    <p style={{ fontSize: 34, color: muted, marginTop: 30, marginBottom: 0 }}>{sub}</p>
+  </div>
+);
+
+/** 行程總覽的一列 */
+const DayRow = ({ date, day, what, tag, color }: { date: string; day: string; what: string; tag: string; color: string }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 26, padding: '16px 0', borderBottom: `1px solid ${line}` }}>
+    <div style={{ flex: '0 0 120px', fontFamily: 'var(--osd-font-display)', fontSize: 30, color }}>{date}</div>
+    <div style={{ flex: '0 0 70px', fontSize: 24, color: muted }}>{day}</div>
+    <div style={{ flex: 1, fontSize: 30 }}>{what}</div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 21, color, border: `1px solid ${color}`, borderRadius: 999, padding: '5px 16px' }}>
+      {tag}
+    </div>
   </div>
 );
 
@@ -620,6 +648,153 @@ const Codelab: Page = () => (
   </div>
 );
 
+const Itinerary: Page = () => (
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>先講行程</div>
+    <h2 style={{ ...h2, fontSize: 58, marginTop: 22 }}>五天在上海做什麼</h2>
+    <div style={{ marginTop: 34 }}>
+      <DayRow date="8/10" day="一" what="抵達、報到" tag="移動" color={muted} />
+      <DayRow date="8/11" day="二" what="Greater China GDG Summit：上午 Cloud 分享、下午各地組織者討論" tag="社群" color={green} />
+      <DayRow date="8/12" day="三" what="I/O Connect Day 1：Keynote、AI 與 Chrome 場、展區" tag="大會" color="#1a73e8" />
+      <DayRow date="8/13" day="四" what="I/O Connect Day 2：Android 與 Cloud 場、ADK 工作坊、開發者沙龍" tag="大會" color="#1a73e8" />
+      <DayRow date="8/14" day="五" what="APAC GDE Summit（陪同參與）、返程" tag="社群" color={yellow} />
+    </div>
+    <p style={{ fontSize: 26, color: muted, marginTop: 32, marginBottom: 0 }}>
+      公開的大會只有中間兩天，前後各一天是社群自己的場子。以下照這個順序講。
+    </p>
+  </div>
+);
+
+const BreakGdg: Page = () => (
+  <DayBreak date="8 / 11" title="Greater China GDG Summit" sub="大會前一天，大中華區的 GDG 組織者先聚一次" />
+);
+
+const GdgWhat: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>8/11 · 這是什麼</div>
+      <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>大中華區<br />GDG 領導力峰會</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
+        <Bullet text="在 Google 上海辦公室，限 GDG 組織者參加" sub="台灣、香港、大陸各城市的社群負責人都在" />
+        <Bullet text="半天聽 Google，半天彼此討論" sub="上午是 Cloud 團隊的分享，下午換我們自己講" />
+      </div>
+    </div>
+    <div style={{ flex: '0 0 34%', borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+      <img src={gdgPoster} alt="" style={{ width: '100%', display: 'block' }} />
+    </div>
+  </div>
+);
+
+const GdgMorning: Page = () => (
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>8/11 · 上午</div>
+    <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>Google Cloud 團隊的分享</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 26, marginTop: 42 }}>
+      <Bullet text="Cloud 這一年往哪走" sub="重心已經整個轉到 agent，跟隔天大會的主軸完全一致" />
+      <Bullet text="社群能拿到什麼資源" sub="活動支援、講者、學習資源怎麼申請" />
+      <Bullet text="＿＿＿＿＿＿" sub="（這裡等你補：上午最有記憶點的一段）" />
+    </div>
+  </div>
+);
+
+const GdgAfternoon: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>8/11 · 下午</div>
+      <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>換各地組織者<br />自己討論</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 38 }}>
+        <Bullet text="開放式分組，用雙腳法則" sub="覺得這桌沒你要的東西，就換一桌，沒人會介意" />
+        <Bullet text="討論的都是實務問題" sub="怎麼找講者、怎麼讓人真的來、怎麼讓社群不靠一個人撐著" />
+      </div>
+    </div>
+    <PhotoSide src={gdgSummit} />
+  </div>
+);
+
+const GdgFun: Page = () => (
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>8/11 · 順帶一提</div>
+    <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>中國的 Google<br />不叫 Google</h2>
+    <p style={{ fontSize: 34, color: muted, marginTop: 40, marginBottom: 0, lineHeight: 1.6 }}>
+      辦公室門口的公司登記名稱跟你想的不一樣——<br />
+      這種小地方最能感覺到「這裡的規則不同」。
+    </p>
+    <p style={{ fontSize: 26, color: muted, marginTop: 40, marginBottom: 0 }}>
+      （照片待補：PXL_20260811_042808026、PXL_20260811_020924218）
+    </p>
+  </div>
+);
+
+const BreakIo: Page = () => (
+  <DayBreak date="8 / 12 – 13" title="I/O Connect China" sub="上海世博中心，兩天，61 場" />
+);
+
+const Venue: Page = () => (
+  <div style={{ ...fill, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 140px 110px', color: '#fff' }}>
+    <PhotoBg src={venue} dim={0.5} />
+    <div style={{ position: 'relative' }}>
+      <div style={{ ...eyebrow, color: '#8ab4f8' }}>8/12 · 進場</div>
+      <h2 style={{ ...h2, fontSize: 66, marginTop: 22 }}>四個主軸，掛在中庭</h2>
+      <p style={{ fontSize: 32, color: '#dadce0', marginTop: 24, marginBottom: 0, lineHeight: 1.6 }}>
+        AI、Android、Cloud、Chrome 四面吊旗，走進去就知道兩天要講什麼。<br />
+        場地大到走完一圈要十分鐘，展區跟議程廳是分開的兩塊。
+      </p>
+    </div>
+  </div>
+);
+
+const KeynoteGame: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>8/12 · Keynote</div>
+      <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>開場是一場<br />跟台下玩的遊戲</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 38 }}>
+        <Bullet text="鏡頭掃過台下，即時找出觀眾" sub="不是預錄，是當場辨識、當場生成" />
+        <Bullet text="依照找到的人生成對應的互動物件" sub="整段沒有一句「我們的模型有多強」，直接讓你看它在做什麼" />
+      </div>
+      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
+        影片另外放（連結待補），不進簡報檔避免檔案過大。
+      </p>
+    </div>
+    <PhotoSide src={keynoteGame} />
+  </div>
+);
+
+const Agentic: Page = () => (
+  <div style={{ ...page, position: 'relative', justifyContent: 'center', color: '#fff' }}>
+    <PhotoBg src={theme} dim={0.68} />
+    <div style={{ position: 'relative' }}>
+      <div style={{ ...eyebrow, color: '#8ab4f8' }}>一個翻譯</div>
+      <h2 style={{ ...h2, fontSize: 78, marginTop: 26 }}>Agent 在這裡<br />叫「智能體」</h2>
+      <p style={{ fontSize: 34, color: '#dadce0', marginTop: 44, marginBottom: 0, lineHeight: 1.7 }}>
+        大會主題「智體新境」——不是「代理」，是「有智能的個體」。<br />
+        翻譯選了哪個字，其實就說明了他們怎麼看這件事。
+      </p>
+    </div>
+  </div>
+);
+
+const BreakGde: Page = () => (
+  <DayBreak date="8 / 14" title="APAC GDE Summit" sub="大會後一天，亞太區的 Google Developer Experts" />
+);
+
+const GdeSummit: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>8/14 · 陪同參與</div>
+      <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>亞太區 GDE 的<br />年度聚會</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 38 }}>
+        <Bullet text="形式是 panel 加現場 Q&A" sub="用 slido 匿名提問，問題直接投在旁邊的螢幕上" />
+        <Bullet text="問的都是很實際的疑問" sub="工具那麼多要怎麼選、某某功能什麼時候上行動裝置" />
+      </div>
+      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
+        我是陪同參與，這段口述帶過。
+      </p>
+    </div>
+    <PhotoSide src={gdeSummit} />
+  </div>
+);
+
 const Takeaway: Page = () => (
   <div style={{ ...page, justifyContent: 'center' }}>
     <div style={eyebrow}>資源</div>
@@ -668,8 +843,22 @@ export const meta: SlideMeta = {
 // 這份專注在大會本身，可獨立拿去社群分享。
 export default [
   Cover,
+  Itinerary,
+
+  // ── 8/11 GDG Summit ──
+  BreakGdg,
+  GdgWhat,
+  GdgMorning,
+  GdgAfternoon,
+  GdgFun,
+
+  // ── 8/12–13 I/O Connect ──
+  BreakIo,
   Where,
   WhyChina,
+  Venue,
+  KeynoteGame,
+  Agentic,
   Thesis,
   Sessions,
   Shift1,
@@ -681,9 +870,15 @@ export default [
   Workshop,
   Stack,
   Shenzhen,
-  Bridge,
   Tooling,
   Codelab,
+
+  // ── 8/14 GDE Summit ──
+  BreakGde,
+  GdeSummit,
+
+  // ── 收尾 ──
+  Bridge,
   Takeaway,
   End,
 ] satisfies Page[];
