@@ -12,7 +12,8 @@ import artPaper from './assets/art-paper.jpg';
 import artDance from './assets/art-dance.jpg';
 import boothCoral from './assets/booth-coral.jpg';
 import boothXr from './assets/booth-xr.jpg';
-import boothStudio from './assets/booth-studio.jpg';
+import studioWide from './assets/studio-wide.jpg';
+import studioResult from './assets/studio-result.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#f8f9fa', text: '#202124', accent: '#1a73e8' },
@@ -368,16 +369,21 @@ const BoothXr: Page = () => (
 );
 
 const BoothStudio: Page = () => (
-  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
-    <div style={{ flex: 1 }}>
-      <div style={eyebrow}>展區 · 04</div>
-      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Gemini 奇趣影棚</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
-        <Bullet text="站上定點拍照，Gemini 生成主題照" sub="書房、實驗室這類場景，換掉的是整個背景與造型，不只是濾鏡" />
-        <Bullet text="掃 QR 取圖，24 小時後自動刪除" sub="畫面上就寫著這句——這個細節比生成品質更值得注意" />
+  <div style={{ ...page, justifyContent: 'center' }}>
+    <div style={eyebrow}>展區 · 04</div>
+    <h2 style={{ ...h2, fontSize: 58, marginTop: 22 }}>Gemini 奇趣影棚</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 30 }}>
+      <Bullet text="站上定點拍照，Gemini 重新生成整個場景與造型" sub="換掉的是背景、服裝、甚至物種，不只是套濾鏡" />
+      <Bullet text="掃 QR 取圖，24 小時後自動刪除" sub="畫面上就寫著這句——這個細節比生成品質更值得注意" />
+    </div>
+    <div style={{ display: 'flex', gap: 24, marginTop: 34, height: 400 }}>
+      <div style={{ flex: '1.4', borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+        <img src={studioWide} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+      <div style={{ flex: '1', borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+        <img src={studioResult} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
     </div>
-    <PhotoSide src={boothStudio} />
   </div>
 );
 
