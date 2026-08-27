@@ -8,6 +8,9 @@ import workshop from './assets/workshop.jpg';
 import flutterSalon from './assets/flutter.jpg';
 import webmcp from './assets/webmcp.jpg';
 import boothArt from './assets/booth-art.jpg';
+import boothCoral from './assets/booth-coral.jpg';
+import boothXr from './assets/booth-xr.jpg';
+import boothStudio from './assets/booth-studio.jpg';
 
 export const design: DesignSystem = {
   palette: { bg: '#f8f9fa', text: '#202124', accent: '#1a73e8' },
@@ -293,31 +296,66 @@ const Shift2: Page = () => (
   </div>
 );
 
-const Shift3: Page = () => (
-  <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>觀察 03</div>
-    <h2 style={{ ...h2, marginTop: 30 }}>Production 要解的三件事</h2>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 54 }}>
-      <Bullet text="Sandbox — agent 執行的東西要關得住" />
-      <Bullet text="高併發 — 幾萬個 agent 同時跑的成本與排程" />
-      <Bullet text="安全 — prompt injection、資料投毒是新的攻擊面" />
+const BoothArt: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>展區 · 01</div>
+      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>AI 社會公益<br />× Gemma 4</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 40 }}>
+        <Bullet text="四時行吟" sub="誦讀古詩，AI 識別語音裡的情緒律動，即時匹配 24 節氣" />
+        <Bullet text="紙上生靈" sub="多模態識別手繪筆觸，帶觀眾走進剪紙光影世界" />
+        <Bullet text="樂舞胡旋" sub="識別觀眾衣著並映射化身，與唐俑共舞" />
+      </div>
+      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
+        三組都是中央美院青年藝術家的畢業創作，加上 Gemma 4 開放模型改成互動裝置。
+      </p>
     </div>
+    <PhotoSide src={boothArt} />
   </div>
 );
 
-const Booth: Page = () => (
+const BoothCoral: Page = () => (
   <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
     <div style={{ flex: 1 }}>
-      <div style={eyebrow}>展區</div>
-      <h2 style={{ ...h2, fontSize: 62, marginTop: 24 }}>攤位上有什麼</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 40 }}>
-        <Bullet text="AI 社會公益 × Gemma 4" sub="三組美院畢業創作改成的互動裝置：誦詩配節氣、手繪剪紙光影、與唐俑共舞" />
-        <Bullet text="WebMCP 工具" sub="專為 agent 設計，現場用除錯擴充看它背後怎麼實作" />
-        <Bullet text="Coral 邊緣推論" sub="YOLOv8n 即時偵測，畫面上直接標推論耗時 50.6 ms" />
-        <Bullet text="Android XR · Gemini 奇趣影棚" sub="XREAL Aura 試戴；拍完照 Gemini 生成，24 小時後自動刪除" />
+      <div style={eyebrow}>展區 · 02</div>
+      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Coral 邊緣推論</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
+        <Bullet text="YOLOv8n 即時人物偵測" sub="畫面上直接標推論耗時，現場看到的是 50.6 ms" />
+        <Bullet text="全部在裝置上跑完" sub="不上雲，也就沒有網路來回的延遲與隱私問題" />
+      </div>
+      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
+        跟 Gemini Nano、ML Kit 那條端側 AI 的線是同一件事的兩端。
+      </p>
+    </div>
+    <PhotoSide src={boothCoral} />
+  </div>
+);
+
+const BoothXr: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>展區 · 03</div>
+      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Android XR</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
+        <Bullet text="XREAL Aura 試戴" sub="Android 展區排隊最久的一攤" />
+        <Bullet text="外型接近一般墨鏡" sub="不是頭盔，是可以戴出門的量體" />
       </div>
     </div>
-    <PhotoSide src={boothArt} />
+    <PhotoSide src={boothXr} />
+  </div>
+);
+
+const BoothStudio: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>展區 · 04</div>
+      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Gemini 奇趣影棚</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
+        <Bullet text="站上定點拍照，Gemini 生成主題照" sub="實驗室、書房、派對，換的是整個場景不只是濾鏡" />
+        <Bullet text="掃 QR 取圖，24 小時後自動刪除" sub="畫面上就寫著這句——這個細節比生成品質更值得注意" />
+      </div>
+    </div>
+    <PhotoSide src={boothStudio} />
   </div>
 );
 
@@ -436,8 +474,10 @@ export default [
   Sessions,
   Shift1,
   Shift2,
-  Shift3,
-  Booth,
+  BoothArt,
+  BoothCoral,
+  BoothXr,
+  BoothStudio,
   Workshop,
   Shenzhen,
   Bridge,
