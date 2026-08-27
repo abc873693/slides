@@ -17,7 +17,6 @@ import keynoteGame from './assets/keynote-game.jpg';
 import artPoem from './assets/art-poem.jpg';
 import artPaper from './assets/art-paper.jpg';
 import artDance from './assets/art-dance.jpg';
-import boothCoral from './assets/booth-coral.jpg';
 import boothXr from './assets/booth-xr.jpg';
 import studioWide from './assets/studio-wide.jpg';
 import studioResult from './assets/studio-result.jpg';
@@ -457,27 +456,10 @@ const BoothArt: Page = () => (
   </div>
 );
 
-const BoothCoral: Page = () => (
-  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
-    <div style={{ flex: 1 }}>
-      <div style={eyebrow}>展區 · 02</div>
-      <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Coral 邊緣推論</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
-        <Bullet text="YOLOv8n 即時人物偵測" sub="畫面上直接標推論耗時，現場看到的是 50.6 ms" />
-        <Bullet text="全部在裝置上跑完" sub="不上雲，也就沒有網路來回的延遲與隱私問題" />
-      </div>
-      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
-        跟 Gemini Nano、ML Kit 那條端側 AI 的線是同一件事的兩端。
-      </p>
-    </div>
-    <PhotoSide src={boothCoral} />
-  </div>
-);
-
 const BoothXr: Page = () => (
   <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
     <div style={{ flex: 1 }}>
-      <div style={eyebrow}>展區 · 03</div>
+      <div style={eyebrow}>展區 · 02</div>
       <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Android XR</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
         <Bullet text="XREAL Aura 試戴" sub="Android 展區排隊最久的一攤" />
@@ -490,7 +472,7 @@ const BoothXr: Page = () => (
 
 const BoothStudio: Page = () => (
   <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>展區 · 04</div>
+    <div style={eyebrow}>展區 · 03</div>
     <h2 style={{ ...h2, fontSize: 58, marginTop: 22 }}>Gemini 奇趣影棚</h2>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 30 }}>
       <Bullet text="站上定點拍照，Gemini 重新生成整個場景與造型" sub="換掉的是背景、服裝、甚至物種，不只是套濾鏡" />
@@ -743,6 +725,58 @@ const Venue: Page = () => (
   </div>
 );
 
+const VenueMap: Page = () => (
+  <div style={{ ...page }}>
+    <div style={eyebrow}>8/12 · 會場</div>
+    <h2 style={{ ...h2, fontSize: 54, marginTop: 20 }}>大概長這樣</h2>
+    <svg viewBox="0 0 1600 520" style={{ width: '100%', height: 'auto', marginTop: 28 }} role="img"
+         aria-label="會場配置示意圖：入口進來是中庭，左邊是主會場與議程廳，右邊是展區，外側是半戶外的開發者沙龍">
+      <rect x="30" y="30" width="1540" height="460" rx="16" fill="none" stroke={line} strokeWidth="2" strokeDasharray="6 5" />
+
+      <rect x="70" y="70" width="420" height="180" rx="12" fill="rgba(26,115,232,0.07)" stroke="#1a73e8" strokeWidth="2" />
+      <text x="96" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill="#1a73e8">主會場</text>
+      <text x="96" y="158" fontSize="22" fill={muted}>Keynote · 開場遊戲</text>
+      <text x="96" y="192" fontSize="22" fill={muted}>能坐下近三千人</text>
+
+      <rect x="70" y="278" width="420" height="180" rx="12" fill={card} stroke={line} strokeWidth="2" />
+      <text x="96" y="328" fontSize="30" fontFamily="ui-monospace, monospace" fill="var(--osd-text)">議程廳 ×2</text>
+      <text x="96" y="366" fontSize="22" fill={muted}>兩軌並行，會撞場</text>
+      <text x="96" y="400" fontSize="22" fill={muted}>AI / Chrome / Android / Cloud</text>
+
+      <rect x="530" y="70" width="380" height="388" rx="12" fill="rgba(232,116,0,0.06)" stroke={yellow} strokeWidth="2" />
+      <text x="556" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill={yellow}>中庭</text>
+      <text x="556" y="158" fontSize="22" fill={muted}>四面吊旗掛這裡</text>
+      <text x="556" y="196" fontSize="22" fill={muted}>AI · Android</text>
+      <text x="556" y="228" fontSize="22" fill={muted}>Cloud · Chrome</text>
+      <text x="556" y="286" fontSize="22" fill={muted}>報到、動線交會點</text>
+      <text x="556" y="330" fontSize="22" fill={muted}>Google 立體字打卡</text>
+
+      <rect x="950" y="70" width="380" height="388" rx="12" fill="rgba(24,128,56,0.06)" stroke={green} strokeWidth="2" />
+      <text x="976" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill={green}>展區</text>
+      <text x="976" y="158" fontSize="22" fill={muted}>Gemini 奇趣影棚</text>
+      <text x="976" y="192" fontSize="22" fill={muted}>AI 社會公益 ×3</text>
+      <text x="976" y="226" fontSize="22" fill={muted}>Android XR 試戴</text>
+      <text x="976" y="260" fontSize="22" fill={muted}>WebMCP · 邊緣推論</text>
+      <text x="976" y="294" fontSize="22" fill={muted}>出海創業加速器</text>
+      <text x="976" y="352" fontSize="22" fill={muted}>排隊最久的一塊</text>
+
+      <rect x="1370" y="70" width="160" height="388" rx="12" fill="rgba(164,143,240,0.06)" stroke="#a48ff0" strokeWidth="2" />
+      <text x="1392" y="120" fontSize="26" fontFamily="ui-monospace, monospace" fill="#a48ff0">沙龍</text>
+      <text x="1392" y="156" fontSize="20" fill={muted}>半戶外</text>
+      <text x="1392" y="184" fontSize="20" fill={muted}>綠植柱</text>
+      <text x="1392" y="212" fontSize="20" fill={muted}>白方凳</text>
+      <text x="1392" y="256" fontSize="20" fill={muted}>工作坊</text>
+      <text x="1392" y="284" fontSize="20" fill={muted}>也在這側</text>
+
+      <polygon points="30,250 8,232 8,268" fill={muted} />
+      <text x="14" y="300" fontSize="20" fill={muted}>入口</text>
+    </svg>
+    <p style={{ fontSize: 24, color: muted, marginTop: 24, marginBottom: 0 }}>
+      示意圖，不是官方平面圖。重點是：議程廳和展區在兩側，中間隔著中庭——換場要走一段。
+    </p>
+  </div>
+);
+
 const KeynoteGame: Page = () => (
   <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
     <div style={{ flex: 1 }}>
@@ -857,6 +891,7 @@ export default [
   Where,
   WhyChina,
   Venue,
+  VenueMap,
   KeynoteGame,
   Agentic,
   Thesis,
@@ -864,7 +899,6 @@ export default [
   Shift1,
   Shift2,
   BoothArt,
-  BoothCoral,
   BoothXr,
   BoothStudio,
   Workshop,
