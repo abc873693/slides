@@ -7,6 +7,9 @@ import theme from './assets/theme.jpg';
 import workshop from './assets/workshop.jpg';
 import flutterSalon from './assets/flutter.jpg';
 import webmcp from './assets/webmcp.jpg';
+import antigravityArch from './assets/antigravity-arch.jpg';
+import agentPlatform from './assets/agent-platform.jpg';
+import googleSign from './assets/google-sign.jpg';
 import artPoem from './assets/art-poem.jpg';
 import artPaper from './assets/art-paper.jpg';
 import artDance from './assets/art-dance.jpg';
@@ -157,6 +160,29 @@ const ArtCard = ({ src, title, note }: { src: string; title: string; note: strin
     </div>
     <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 30, lineHeight: 1.3 }}>{title}</div>
     <div style={{ fontSize: 24, color: muted, lineHeight: 1.5 }}>{note}</div>
+  </div>
+);
+
+/** 分層條:名稱 + 說明,可標記「我們用的那層」 */
+const Layer = ({ n, name, desc, color, mine = false }: { n: string; name: string; desc: string; color: string; mine?: boolean }) => (
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 24,
+      background: mine ? 'rgba(26,115,232,0.06)' : card,
+      border: `1px solid ${line}`,
+      borderLeft: `5px solid ${color}`,
+      borderRadius: 'var(--osd-radius)',
+      padding: '16px 20px',
+    }}
+  >
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 22, color: muted, flex: '0 0 34px' }}>{n}</div>
+    <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 25, color, flex: '0 0 250px' }}>{name}</div>
+    <div style={{ fontSize: 22, color: muted, flex: 1 }}>{desc}</div>
+    {mine ? (
+      <div style={{ fontFamily: 'var(--osd-font-display)', fontSize: 19, color: '#1a73e8' }}>← 我們用的</div>
+    ) : null}
   </div>
 );
 
@@ -390,7 +416,7 @@ const BoothStudio: Page = () => (
 const Workshop: Page = () => (
   <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
     <div style={{ flex: 1 }}>
-      <div style={eyebrow}>我實際上的一堂課</div>
+      <div style={eyebrow}>我參加的工作坊</div>
       <h2 style={{ ...h2, fontSize: 58, marginTop: 26 }}>Build multi-agent<br />systems with ADK</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 40 }}>
         <Chip text="LlmAgent" />
@@ -405,6 +431,33 @@ const Workshop: Page = () => (
       </p>
     </div>
     <PhotoSide src={workshop} />
+  </div>
+);
+
+const Stack: Page = () => (
+  <div style={{ ...page, flexDirection: 'row', gap: 44, alignItems: 'center' }}>
+    <div style={{ flex: '1.1' }}>
+      <div style={eyebrow}>ADK 在哪一層</div>
+      <h2 style={{ ...h2, fontSize: 52, marginTop: 22 }}>整個 agent stack<br />分四層</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 34 }}>
+        <Layer n="01" name="Agent Studio" desc="低程式碼視覺工作區" color={yellow} />
+        <Layer n="02" name="Managed Agents API" desc="託管服務" color={green} />
+        <Layer n="03" name="Antigravity · CLI" desc="開發者工具" color="#a48ff0" />
+        <Layer n="04" name="ADK 2.0" desc="完全用程式控制" color="#1a73e8" mine />
+      </div>
+      <p style={{ fontSize: 24, color: muted, marginTop: 28, marginBottom: 0 }}>
+        A2A 協定貫穿四層，不同層做出來的 agent 可以互相呼叫。
+      </p>
+    </div>
+    <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div style={{ borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+        <img src={agentPlatform} alt="" style={{ width: '100%', display: 'block' }} />
+      </div>
+      <div style={{ fontSize: 22, color: muted, lineHeight: 1.5 }}>
+        主舞台講的 Agent Platform 內部：Registry、Gateway、Identity、Observability——
+        全是「怎麼讓 agent 上線不出事」的東西。
+      </div>
+    </div>
   </div>
 );
 
@@ -435,17 +488,19 @@ const Bridge: Page = () => (
 );
 
 const Tooling: Page = () => (
-  <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>不只是後端</div>
-    <h2 style={{ ...h2, marginTop: 30 }}>工具端也在往同一個方向走</h2>
-    <div style={{ display: 'flex', gap: 28, marginTop: 50 }}>
-      <Card n="/browser" title="沙箱瀏覽器" body="內建 chrome-devtools-mcp，agent 自己開頁面驗證結果" color="#1a73e8" />
-      <Card n="/goal" title="自主執行" body="拆解目標、跑測試、讀編譯錯誤自己修" color={green} />
-      <Card n=".agents/skills/" title="團隊 SOP" body="把流程寫成 Markdown 進版控，變成團隊專屬指令" color={yellow} />
+  <div style={{ ...page, flexDirection: 'row', gap: 48, alignItems: 'center' }}>
+    <div style={{ flex: '0 0 52%', borderRadius: 'var(--osd-radius)', overflow: 'hidden', border: `1px solid ${line}` }}>
+      <img src={antigravityArch} alt="" style={{ width: '100%', display: 'block' }} />
     </div>
-    <p style={{ fontSize: 26, color: muted, marginTop: 36, marginBottom: 0 }}>
-      Antigravity 2.0 於 GDG Summit 分享的 slash commands
-    </p>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>開發工具</div>
+      <h2 style={{ ...h2, fontSize: 50, marginTop: 22 }}>你寫程式的工具<br />也在 agent 化</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginTop: 32 }}>
+        <Bullet text="三個介面共用同一套引擎" sub="桌面 App、CLI、IDE，切換不掉狀態" />
+        <Bullet text="/browser · /goal" sub="沙箱瀏覽器自己驗證結果；給目標讓它拆解、跑測試、自己修" />
+        <Bullet text=".agents/skills/" sub="把團隊 SOP 寫成 Markdown 進版控，變成專屬指令" />
+      </div>
+    </div>
   </div>
 );
 
@@ -471,17 +526,18 @@ const Takeaway: Page = () => (
 );
 
 const End: Page = () => (
-  <div style={{ ...fill, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 140px' }}>
-    <div style={{ display: 'flex', gap: 12, marginBottom: 40 }}>
-      <Dot c="#1a73e8" />
-      <Dot c={red} />
-      <Dot c="#fbbc04" />
-      <Dot c={green} />
+  <div style={{ ...fill, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 140px', color: '#fff' }}>
+    <PhotoBg src={googleSign} dim={0.6} />
+    <div style={{ position: 'relative', display: 'flex', gap: 12, marginBottom: 40 }}>
+      <Dot c="#8ab4f8" />
+      <Dot c="#f28b82" />
+      <Dot c="#fdd663" />
+      <Dot c="#81c995" />
     </div>
-    <h2 style={{ ...h2, fontSize: 76 }}>
+    <h2 style={{ ...h2, fontSize: 76, position: 'relative' }}>
       工具寫一次，<br />到處都能接
     </h2>
-    <p style={{ fontSize: 34, color: muted, marginTop: 40, marginBottom: 0 }}>
+    <p style={{ fontSize: 34, color: '#dadce0', marginTop: 40, marginBottom: 0, position: 'relative' }}>
       這是這趟最實際的收穫。
     </p>
   </div>
@@ -507,6 +563,7 @@ export default [
   BoothXr,
   BoothStudio,
   Workshop,
+  Stack,
   Shenzhen,
   Bridge,
   Tooling,
