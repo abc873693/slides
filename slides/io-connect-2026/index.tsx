@@ -11,6 +11,7 @@ import agentPlatform from './assets/agent-platform.jpg';
 import googleSign from './assets/google-sign.jpg';
 import gdgSummit from './assets/gdg-summit.jpg';
 import gdgPoster from './assets/gdg-poster.jpg';
+import gdgCloud from './assets/gdg-cloud.jpg';
 import gdeSummit from './assets/gde-summit.jpg';
 import venue from './assets/venue.jpg';
 import keynoteGame from './assets/keynote-game.jpg';
@@ -279,6 +280,25 @@ const DayRow = ({ date, day, what, tag, color }: { date: string; day: string; wh
   </div>
 );
 
+/** 影片註記:投影時講者自己切過去播 */
+const VideoNote = ({ label, url }: { label: string; url: string }) => (
+  <div
+    style={{
+      display: 'inline-flex',
+      alignItems: 'baseline',
+      gap: 14,
+      border: `1px solid ${line}`,
+      background: card,
+      borderRadius: 999,
+      padding: '10px 22px',
+    }}
+  >
+    <span style={{ color: red, fontSize: 22 }}>▶</span>
+    <span style={{ fontSize: 24 }}>{label}</span>
+    <span style={{ fontFamily: 'var(--osd-font-display)', fontSize: 21, color: muted }}>{url}</span>
+  </div>
+);
+
 // ---------------------------------------------------------------- pages
 
 const Cover: Page = () => (
@@ -316,23 +336,26 @@ const Where: Page = () => (
       <div style={{ ...eyebrow, fontSize: 22, letterSpacing: '0.08em', textTransform: 'none' }}>
         I/O = 美國主場　·　Connect = 巡迴場　·　Extended = 社群自辦
       </div>
-      <h2 style={{ ...h2, fontSize: 64, marginTop: 22 }}>我去的是巡迴場</h2>
+      <h2 style={{ ...h2, fontSize: 58, marginTop: 20 }}>我去的是巡迴場</h2>
 
-      <div style={{ display: 'flex', gap: 56, marginTop: 44 }}>
+      <div style={{ display: 'flex', gap: 46, marginTop: 34 }}>
         <Figure n="61" label="場次總計" color="#1a73e8" />
         <Figure n="2" label="天" color={green} />
         <Figure n="4" label="主軸" color={yellow} />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 44 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 30 }}>
+        <Chip text="AI · 7 場" />
+        <Chip text="Chrome · 6 場" />
+        <Chip text="Android · 7 場" />
+        <Chip text="Cloud · 10 場" />
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 30 }}>
         <TrackBar name="議程" n={30} total={61} color="#1a73e8" />
         <TrackBar name="工作坊" n={19} total={61} color={green} />
         <TrackBar name="開發者沙龍" n={12} total={61} color={yellow} />
       </div>
-
-      <p style={{ fontSize: 26, color: muted, marginTop: 36, marginBottom: 0 }}>
-        兩軌並行，要先排好不然會撞場。以 GDG 組織者身分受邀。
-      </p>
     </div>
     <PhotoSide src={tracks} />
   </div>
@@ -450,9 +473,12 @@ const BoothArt: Page = () => (
         note="即時識別觀眾衣著並映射專屬化身，與唐俑共舞胡旋"
       />
     </div>
-    <p style={{ fontSize: 24, color: muted, marginTop: 36, marginBottom: 0 }}>
-      三組都是中央美院青年藝術家的畢業創作，加上 Gemma 4 開放模型改成互動裝置。
-    </p>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginTop: 32, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 24, color: muted }}>
+        三組都是中央美院青年藝術家的畢業創作，加上 Gemma 4 開放模型改成互動裝置。
+      </span>
+      <VideoNote label="樂舞胡旋" url="youtu.be/AbeYp5MeL_g" />
+    </div>
   </div>
 );
 
@@ -461,9 +487,16 @@ const BoothXr: Page = () => (
     <div style={{ flex: 1 }}>
       <div style={eyebrow}>展區 · 02</div>
       <h2 style={{ ...h2, fontSize: 58, marginTop: 24 }}>Android XR</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 40 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 36 }}>
         <Bullet text="XREAL Aura 試戴" sub="Android 展區排隊最久的一攤" />
         <Bullet text="外型接近一般墨鏡" sub="不是頭盔，是可以戴出門的量體" />
+        <Bullet
+          text="但還要帶一顆運算單元"
+          sub="像行動電源那樣大小，無線連到眼鏡——重量被移到口袋，不在臉上"
+        />
+      </div>
+      <div style={{ marginTop: 30 }}>
+        <VideoNote label="試戴片段" url="youtube.com/shorts/ilkpGmFsWaE" />
       </div>
     </div>
     <PhotoSide src={boothXr} />
@@ -538,15 +571,69 @@ const Stack: Page = () => (
 );
 
 const Shenzhen: Page = () => (
-  <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>社群案例</div>
-    <h2 style={{ ...h2, marginTop: 30 }}>深圳 GDG 拿 ADK 跑活動營運</h2>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, marginTop: 50 }}>
-      <Bullet text="主 Agent 編排 → 文案 / 生圖 / 排版三個專業 Agent" sub="活動前籌備、活動中記錄、活動後復盤，各自觸發同一組 SOP" />
-      <Bullet text="成效：流程沉澱成社群資產" sub="SOP 與 prompt 都在 ADK 專案裡，新的組織者照著跑就行" />
-    </div>
-    <p style={{ fontSize: 26, color: muted, marginTop: 40, marginBottom: 0 }}>
-      來源：深圳 GDG 於 GDG Summit 的分享（講者自述為定性總結，未做精確工時統計）
+  <div style={{ ...page }}>
+    <div style={eyebrow}>8/11 · 社群案例</div>
+    <h2 style={{ ...h2, fontSize: 52, marginTop: 20 }}>深圳 GDG 拿 ADK 跑活動營運</h2>
+    <svg viewBox="0 0 1600 430" style={{ width: '100%', height: 'auto', marginTop: 26 }} role="img"
+         aria-label="多 agent 架構：SOP 觸發交給主 agent 拆解，分派給文案、生圖、排版三個專業 agent，再交給 Python 腳本工具，底層都是 Gemini">
+      <defs>
+        <marker id="sz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <polygon points="0,1 10,5 0,9" fill={muted} />
+        </marker>
+      </defs>
+
+      <text x="20" y="30" fontSize="21" fill={muted} fontFamily="ui-monospace, monospace">SOP 觸發</text>
+      <rect x="20" y="48" width="250" height="62" rx="10" fill={card} stroke={line} strokeWidth="2" />
+      <text x="44" y="87" fontSize="25">活動前籌備</text>
+      <rect x="20" y="130" width="250" height="62" rx="10" fill={card} stroke={line} strokeWidth="2" />
+      <text x="44" y="169" fontSize="25">活動中記錄</text>
+      <rect x="20" y="212" width="250" height="62" rx="10" fill={card} stroke={line} strokeWidth="2" />
+      <text x="44" y="251" fontSize="25">活動後復盤</text>
+
+      <path d="M 278 79 L 310 79 L 310 161 L 342 161" fill="none" stroke={muted} strokeWidth="2" />
+      <path d="M 278 161 L 342 161" fill="none" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+      <path d="M 278 243 L 310 243 L 310 161" fill="none" stroke={muted} strokeWidth="2" />
+
+      <rect x="350" y="112" width="270" height="98" rx="12" fill="rgba(26,115,232,0.1)" stroke="#1a73e8" strokeWidth="2.5" />
+      <text x="380" y="152" fontSize="28" fill="#1a73e8" fontFamily="ui-monospace, monospace">主 Agent</text>
+      <text x="380" y="186" fontSize="21" fill={muted}>任務拆解與調度</text>
+
+      <line x1="628" y1="161" x2="680" y2="90" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+      <line x1="628" y1="161" x2="680" y2="161" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+      <line x1="628" y1="161" x2="680" y2="232" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+
+      <rect x="688" y="58" width="290" height="66" rx="10" fill={card} stroke={green} strokeWidth="2" />
+      <text x="712" y="88" fontSize="24" fill={green}>文案 Agent</text>
+      <text x="712" y="112" fontSize="19" fill={muted}>報名文案 · 回顧稿</text>
+
+      <rect x="688" y="130" width="290" height="66" rx="10" fill={card} stroke={green} strokeWidth="2" />
+      <text x="712" y="160" fontSize="24" fill={green}>生圖 Agent</text>
+      <text x="712" y="184" fontSize="19" fill={muted}>海報 · 題圖 · 配圖</text>
+
+      <rect x="688" y="202" width="290" height="66" rx="10" fill={card} stroke={green} strokeWidth="2" />
+      <text x="712" y="232" fontSize="24" fill={green}>排版 Agent</text>
+      <text x="712" y="256" fontSize="19" fill={muted}>公眾號 Markdown</text>
+
+      <line x1="986" y1="90" x2="1030" y2="140" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+      <line x1="986" y1="163" x2="1030" y2="163" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+      <line x1="986" y1="235" x2="1030" y2="186" stroke={muted} strokeWidth="2" markerEnd="url(#sz)" />
+
+      <rect x="1038" y="70" width="300" height="186" rx="12" fill={card} stroke={yellow} strokeWidth="2" />
+      <text x="1062" y="108" fontSize="24" fill={yellow} fontFamily="ui-monospace, monospace">Python 腳本工具</text>
+      <text x="1062" y="146" fontSize="20" fill={muted}>upload → 圖床</text>
+      <text x="1062" y="178" fontSize="20" fill={muted}>render → HTML</text>
+      <text x="1062" y="210" fontSize="20" fill={muted}>record → 現場錄音</text>
+      <text x="1062" y="240" fontSize="19" fill={red}>腳本本身也是 Gemini 生成的</text>
+
+      <rect x="350" y="310" width="988" height="86" rx="12" fill="rgba(66,133,244,0.05)" stroke={line} strokeWidth="2" />
+      <text x="380" y="348" fontSize="24" fontFamily="ui-monospace, monospace">Gemini 模型底座</text>
+      <text x="380" y="378" fontSize="20" fill={muted}>文本 · 程式碼 · 圖像 · 語音轉寫——所有 agent 與腳本都靠它</text>
+      <line x1="485" y1="306" x2="485" y2="214" stroke={muted} strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#sz)" />
+      <line x1="833" y1="306" x2="833" y2="272" stroke={muted} strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#sz)" />
+    </svg>
+    <p style={{ fontSize: 22, color: muted, marginTop: 20, marginBottom: 0 }}>
+      重畫自深圳 GDG 於峰會的分享（講者自述為定性總結，未做精確工時統計）。
+      重點是最右邊那行：<span style={{ color: 'var(--osd-text)' }}>連工具腳本都是生成的</span>。
     </p>
   </div>
 );
@@ -668,14 +755,20 @@ const GdgWhat: Page = () => (
 );
 
 const GdgMorning: Page = () => (
-  <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>8/11 · 上午</div>
-    <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>Google Cloud 團隊的分享</h2>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 26, marginTop: 42 }}>
-      <Bullet text="Cloud 這一年往哪走" sub="重心已經整個轉到 agent，跟隔天大會的主軸完全一致" />
-      <Bullet text="社群能拿到什麼資源" sub="活動支援、講者、學習資源怎麼申請" />
-      <Bullet text="＿＿＿＿＿＿" sub="（這裡等你補：上午最有記憶點的一段）" />
+  <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+    <div style={{ flex: 1 }}>
+      <div style={eyebrow}>8/11 · 上午</div>
+      <h2 style={{ ...h2, fontSize: 52, marginTop: 22 }}>Google Cloud 團隊<br />的分享</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 36 }}>
+        <Bullet text="Cloud 這一年往哪走" sub="重心已經整個轉到 agent，跟隔天大會的主軸完全一致" />
+        <Bullet text="社群能拿到什麼資源" sub="活動支援、講者、學習資源怎麼申請" />
+        <Bullet
+          text="現場示範：用 Antigravity 做一個 2048"
+          sub="從空專案到部署上 Firebase，全程在台上跑完——跟隔天工作坊講的是同一套東西"
+        />
+      </div>
     </div>
+    <PhotoSide src={gdgCloud} />
   </div>
 );
 
@@ -728,51 +821,42 @@ const Venue: Page = () => (
 const VenueMap: Page = () => (
   <div style={{ ...page }}>
     <div style={eyebrow}>8/12 · 會場</div>
-    <h2 style={{ ...h2, fontSize: 54, marginTop: 20 }}>大概長這樣</h2>
-    <svg viewBox="0 0 1600 520" style={{ width: '100%', height: 'auto', marginTop: 28 }} role="img"
-         aria-label="會場配置示意圖：入口進來是中庭，左邊是主會場與議程廳，右邊是展區，外側是半戶外的開發者沙龍">
-      <rect x="30" y="30" width="1540" height="460" rx="16" fill="none" stroke={line} strokeWidth="2" strokeDasharray="6 5" />
+    <h2 style={{ ...h2, fontSize: 52, marginTop: 20 }}>三種空間，走一圈要十分鐘</h2>
+    <svg viewBox="0 0 1600 440" style={{ width: '100%', height: 'auto', marginTop: 30 }} role="img"
+         aria-label="會場配置：一樓藍色是議程廳，綠色是展區，黃色是工作坊，開發者沙龍在展區末端">
+      <rect x="30" y="30" width="1540" height="380" rx="16" fill="none" stroke={line} strokeWidth="2" strokeDasharray="6 5" />
 
-      <rect x="70" y="70" width="420" height="180" rx="12" fill="rgba(26,115,232,0.07)" stroke="#1a73e8" strokeWidth="2" />
-      <text x="96" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill="#1a73e8">主會場</text>
-      <text x="96" y="158" fontSize="22" fill={muted}>Keynote · 開場遊戲</text>
-      <text x="96" y="192" fontSize="22" fill={muted}>能坐下近三千人</text>
+      <rect x="70" y="70" width="420" height="300" rx="12" fill="rgba(26,115,232,0.09)" stroke="#1a73e8" strokeWidth="2.5" />
+      <text x="98" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill="#1a73e8">議程廳</text>
+      <text x="98" y="156" fontSize="22" fill={muted}>一樓，兩軌並行</text>
+      <text x="98" y="190" fontSize="22" fill={muted}>AI · Chrome（8/12）</text>
+      <text x="98" y="222" fontSize="22" fill={muted}>Android · Cloud（8/13）</text>
+      <text x="98" y="268" fontSize="22" fill={muted}>Keynote 也在這一側</text>
+      <text x="98" y="330" fontSize="20" fill="#1a73e8">30 場</text>
 
-      <rect x="70" y="278" width="420" height="180" rx="12" fill={card} stroke={line} strokeWidth="2" />
-      <text x="96" y="328" fontSize="30" fontFamily="ui-monospace, monospace" fill="var(--osd-text)">議程廳 ×2</text>
-      <text x="96" y="366" fontSize="22" fill={muted}>兩軌並行，會撞場</text>
-      <text x="96" y="400" fontSize="22" fill={muted}>AI / Chrome / Android / Cloud</text>
+      <rect x="530" y="70" width="620" height="300" rx="12" fill="rgba(24,128,56,0.09)" stroke={green} strokeWidth="2.5" />
+      <text x="558" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill={green}>展區</text>
+      <text x="558" y="156" fontSize="22" fill={muted}>Gemini 奇趣影棚 · AI 社會公益 ×3</text>
+      <text x="558" y="188" fontSize="22" fill={muted}>Android XR · WebMCP · 邊緣推論</text>
+      <text x="558" y="220" fontSize="22" fill={muted}>出海創業加速器</text>
 
-      <rect x="530" y="70" width="380" height="388" rx="12" fill="rgba(232,116,0,0.06)" stroke={yellow} strokeWidth="2" />
-      <text x="556" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill={yellow}>中庭</text>
-      <text x="556" y="158" fontSize="22" fill={muted}>四面吊旗掛這裡</text>
-      <text x="556" y="196" fontSize="22" fill={muted}>AI · Android</text>
-      <text x="556" y="228" fontSize="22" fill={muted}>Cloud · Chrome</text>
-      <text x="556" y="286" fontSize="22" fill={muted}>報到、動線交會點</text>
-      <text x="556" y="330" fontSize="22" fill={muted}>Google 立體字打卡</text>
+      <rect x="880" y="250" width="248" height="102" rx="10" fill="rgba(24,128,56,0.16)" stroke={green} strokeWidth="2" strokeDasharray="5 4" />
+      <text x="902" y="288" fontSize="24" fill={green}>開發者沙龍</text>
+      <text x="902" y="318" fontSize="19" fill={muted}>在展區末端</text>
+      <text x="902" y="342" fontSize="19" fill={muted}>12 場</text>
 
-      <rect x="950" y="70" width="380" height="388" rx="12" fill="rgba(24,128,56,0.06)" stroke={green} strokeWidth="2" />
-      <text x="976" y="120" fontSize="30" fontFamily="ui-monospace, monospace" fill={green}>展區</text>
-      <text x="976" y="158" fontSize="22" fill={muted}>Gemini 奇趣影棚</text>
-      <text x="976" y="192" fontSize="22" fill={muted}>AI 社會公益 ×3</text>
-      <text x="976" y="226" fontSize="22" fill={muted}>Android XR 試戴</text>
-      <text x="976" y="260" fontSize="22" fill={muted}>WebMCP · 邊緣推論</text>
-      <text x="976" y="294" fontSize="22" fill={muted}>出海創業加速器</text>
-      <text x="976" y="352" fontSize="22" fill={muted}>排隊最久的一塊</text>
+      <rect x="1190" y="70" width="340" height="300" rx="12" fill="rgba(232,116,0,0.09)" stroke={yellow} strokeWidth="2.5" />
+      <text x="1218" y="118" fontSize="30" fontFamily="ui-monospace, monospace" fill={yellow}>工作坊</text>
+      <text x="1218" y="156" fontSize="22" fill={muted}>要帶筆電</text>
+      <text x="1218" y="188" fontSize="22" fill={muted}>ADK 多 agent</text>
+      <text x="1218" y="220" fontSize="22" fill={muted}>兩日挑戰賽也在這</text>
+      <text x="1218" y="330" fontSize="20" fill={yellow}>19 場</text>
 
-      <rect x="1370" y="70" width="160" height="388" rx="12" fill="rgba(164,143,240,0.06)" stroke="#a48ff0" strokeWidth="2" />
-      <text x="1392" y="120" fontSize="26" fontFamily="ui-monospace, monospace" fill="#a48ff0">沙龍</text>
-      <text x="1392" y="156" fontSize="20" fill={muted}>半戶外</text>
-      <text x="1392" y="184" fontSize="20" fill={muted}>綠植柱</text>
-      <text x="1392" y="212" fontSize="20" fill={muted}>白方凳</text>
-      <text x="1392" y="256" fontSize="20" fill={muted}>工作坊</text>
-      <text x="1392" y="284" fontSize="20" fill={muted}>也在這側</text>
-
-      <polygon points="30,250 8,232 8,268" fill={muted} />
-      <text x="14" y="300" fontSize="20" fill={muted}>入口</text>
+      <polygon points="30,220 8,202 8,238" fill={muted} />
+      <text x="12" y="268" fontSize="20" fill={muted}>入口</text>
     </svg>
-    <p style={{ fontSize: 24, color: muted, marginTop: 24, marginBottom: 0 }}>
-      示意圖，不是官方平面圖。重點是：議程廳和展區在兩側，中間隔著中庭——換場要走一段。
+    <p style={{ fontSize: 22, color: muted, marginTop: 22, marginBottom: 0 }}>
+      示意圖。實際感受是：聽完議程要走過整個展區才到工作坊，中間很容易被展區攔下來。
     </p>
   </div>
 );
@@ -786,9 +870,9 @@ const KeynoteGame: Page = () => (
         <Bullet text="鏡頭掃過台下，即時找出觀眾" sub="不是預錄，是當場辨識、當場生成" />
         <Bullet text="依照找到的人生成對應的互動物件" sub="整段沒有一句「我們的模型有多強」，直接讓你看它在做什麼" />
       </div>
-      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
-        影片另外放（連結待補），不進簡報檔避免檔案過大。
-      </p>
+      <div style={{ marginTop: 34 }}>
+        <VideoNote label="現場影片" url="youtu.be/x-16TENWLtI" />
+      </div>
     </div>
     <PhotoSide src={keynoteGame} />
   </div>
@@ -809,21 +893,19 @@ const Agentic: Page = () => (
 );
 
 const BreakGde: Page = () => (
-  <DayBreak date="8 / 14" title="APAC GDE Summit" sub="大會後一天，亞太區的 Google Developer Experts" />
+  <DayBreak date="8 / 14" title="APAC GDE Summit" sub="大會後一天，亞太區的 Google Developer Experts 年度聚會" />
 );
 
 const GdeSummit: Page = () => (
   <div style={{ ...page, flexDirection: 'row', gap: 56, alignItems: 'center' }}>
     <div style={{ flex: 1 }}>
-      <div style={eyebrow}>8/14 · 陪同參與</div>
+      <div style={eyebrow}>8/14</div>
       <h2 style={{ ...h2, fontSize: 54, marginTop: 22 }}>亞太區 GDE 的<br />年度聚會</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginTop: 38 }}>
         <Bullet text="形式是 panel 加現場 Q&A" sub="用 slido 匿名提問，問題直接投在旁邊的螢幕上" />
         <Bullet text="問的都是很實際的疑問" sub="工具那麼多要怎麼選、某某功能什麼時候上行動裝置" />
       </div>
-      <p style={{ fontSize: 24, color: muted, marginTop: 34, marginBottom: 0 }}>
-        我是陪同參與，這段口述帶過。
-      </p>
+
     </div>
     <PhotoSide src={gdeSummit} />
   </div>
@@ -877,19 +959,22 @@ export const meta: SlideMeta = {
 // 這份專注在大會本身，可獨立拿去社群分享。
 export default [
   Cover,
+  WhyChina,
   Itinerary,
 
   // ── 8/11 GDG Summit ──
   BreakGdg,
   GdgWhat,
   GdgMorning,
+  Tooling,
+  Codelab,
   GdgAfternoon,
+  Shenzhen,
   GdgFun,
 
   // ── 8/12–13 I/O Connect ──
   BreakIo,
   Where,
-  WhyChina,
   Venue,
   VenueMap,
   KeynoteGame,
@@ -903,9 +988,6 @@ export default [
   BoothStudio,
   Workshop,
   Stack,
-  Shenzhen,
-  Tooling,
-  Codelab,
 
   // ── 8/14 GDE Summit ──
   BreakGde,
