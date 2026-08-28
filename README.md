@@ -16,7 +16,7 @@
 ```bash
 npm install
 npm run dev            # http://localhost:5173
-npm run dev -- --host 192.168.0.253   # 只綁指定網卡，給同網段的人看
+npm run dev -- --host <你的內網 IP>    # 只綁指定網卡，給同網段的人看
 ```
 
 進入簡報後按 `F` 全螢幕播放，方向鍵翻頁。

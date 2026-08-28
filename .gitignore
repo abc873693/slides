@@ -5,3 +5,6 @@ dist
 # 素材原檔：不進 repo（可能含未公開內容）
 photos/
 notes/
+
+# 產出的全覽圖（工作檔）
+deck-overview.png
