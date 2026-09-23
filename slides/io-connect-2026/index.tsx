@@ -640,18 +640,6 @@ const Shenzhen: Page = () => (
   </div>
 );
 
-const Bridge: Page = () => (
-  <div style={{ ...page, justifyContent: 'center' }}>
-    <div style={eyebrow}>回來之後</div>
-    <h2 style={{ ...h2, fontSize: 64, marginTop: 26 }}>拿工作坊的東西<br />接了一個既有系統</h2>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 26, marginTop: 44 }}>
-      <Bullet text="把一個既有的監控 dashboard 開放給 agent 讀" sub="不是重寫一套，是讓原本畫圖用的資料換一個介面給模型看" />
-      <Bullet text="工具只有三個，全部唯讀" sub="tool 太多模型會選錯；寫入的誤判成本比誤報高" />
-      <Bullet text="實作細節與踩到的問題另外分享" sub="這場先講大會" />
-    </div>
-  </div>
-);
-
 const Tooling: Page = () => (
   <div style={{ ...page, justifyContent: 'center' }}>
     <div style={eyebrow}>開發工具</div>
@@ -988,8 +976,7 @@ export const meta: SlideMeta = {
   createdAt: '2026-08-26T09:48:16.943Z',
 };
 
-// ADK 實作細節（SoIBuilt / Arch / Demo / Traps）已抽到另一份簡報，
-// 這份專注在大會本身，可獨立拿去社群分享。
+// 這份只講大會本身，不含任何自家系統的實作內容，可直接公開分享。
 export default [
   Cover,
   WhyChina,
@@ -1027,7 +1014,6 @@ export default [
   GdeSummit,
 
   // ── 收尾 ──
-  Bridge,
   Takeaway,
   End,
 ] satisfies Page[];
